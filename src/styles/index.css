@@ -10,3 +10,45 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body {
+    padding-top: 30px;
+    background-color: lavender;
+}
+.container {
+    
+    background-color: blanchedalmond;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    width: 18.rem;
+}
+h1 {
+    text-align: center;
+}
+ul {
+    padding: 0;
+    margin-bottom: 0;
+}
+ul li {
+    display: flex inline;
+    flex: wrap;
+    width: 10rem;
+    background-color: white;
+    border: 1px solid;
+    list-style: none;
+    padding: 5px;
+}
+li .icon{
+    visibility: hidden;
+    margin: 1px;
+    padding-right: 4px;
+    padding-top: 2px;
+    float: right;
+}
+
+li:hover .icon{
+    visibility: visible;
+}
+
+input {
+    border: none ;
+    width: 100%;
+}
