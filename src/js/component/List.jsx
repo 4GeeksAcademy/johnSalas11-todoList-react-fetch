@@ -20,13 +20,34 @@ export const List = () => {
 
     useEffect(() => {
         fetch('https://playground.4geeks.com/todo/users/JohnSalas', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-type': 'application/json;'
             }
-        }).then(response => response.json())
-            .then(responseJson => setUser(responseJson))
-            .catch(() => { setUser({ name: "JohnSalas" }) })
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                if (response.status === 404) {
+                    return fetch('https://playground.4geeks.com/todo/users/JohnSalas', {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json;'
+                        }
+                    }).then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Error al crear el usuario.');
+                        }
+                        return response.json();
+                    });
+                }
+                throw new Error('Error al verificar o crear el usuario.');
+            })
+            .then((userData) => setUser(userData))
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }, []);
 
 
@@ -56,7 +77,7 @@ export const List = () => {
 
 
 
-    const deletePost = (id) => {
+    const deleteTodo = (id) => {
         fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
             method: 'DELETE',
             headers: {
@@ -75,20 +96,20 @@ export const List = () => {
     };
 
 
-    const deleteUser = async () => {
-        await fetch('https://playground.4geeks.com/todo/users/JohnSalas', {
-        }).then(() => setUser(null))
+    const deleteAllTodos = async () => {
+        const deleteAll = todos.map(item => deleteTodo(item.id))
+        await promise.all(deleteAll).then(() => setTodos([]))
     }
+
+
     if (!user || !todos) return <>No hay usuario</>;
 
 
     return (
-        <div className="container rounded">
-            <div className="d-flex">
-                <h1>ToDo's</h1>
-                <button className="btn btn-light" onClick={() => deleteUser()}>delete User</button>
-            </div>
-            <input className="mb-3"
+        <div className="container">
+            <h1>{user?.name ? `${user.name}'s tasks` : 'Loading...'}</h1>
+            <input
+                className="mb-3"
                 value={inputValue}
                 type="text"
                 placeholder="To Be Done"
@@ -96,16 +117,15 @@ export const List = () => {
                 onKeyDown={saveTodo}
             />
             <ul>
-                {
-                    todos.map((todo, index) => (
-                        <li key={index}>
-                            {todo.label}
-                            <i className="fa fa-trash icon" onClick={() => deletePost(todo.id)}></i>
-                        </li>
-                    ))
-                }
-                <div>{todos.length} tasks left</div>
+                {todos.map((todo, index) => (
+                    <li key={index}>
+                        <span>{todo.label}</span>
+                        <i className="fa fa-x icon" onClick={() => deleteTodo(todo.id)}></i>
+                    </li>
+                ))}
             </ul>
+            <i className="btn fa fa-trash icon" onClick={() => deleteAllTodos()}></i>
+            <div>{todos.length} tasks left</div>
         </div>
     );
 };

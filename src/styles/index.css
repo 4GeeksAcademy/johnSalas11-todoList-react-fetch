@@ -1,61 +1,96 @@
 
-/* 
-
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
 body {
     padding-top: 30px;
-    background-color: lavender;
-}
-.container {
-    
-    background-color: rgb(250, 250, 250);
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
-    width: 18.rem;
-}
-h1 {
-    text-align: center;
-}
-ul {
-    padding: 0;
-    margin-bottom: 0;
-}
-ul li {
-    display: flex inline;
-    flex: wrap;
-    width: 10rem;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid;
-    list-style: none;
-    padding: 5px;
-    margin: 7px;
+    background-color: #F5F5F7; 
+    font-family:  'Courier New', Courier, monospace;
+    color: #333;
+    margin: 0;
+    display: flex;
     justify-content: center;
-    text-align: center;
-}
-li .icon{
-    visibility: hidden;
-    margin: 1px;
-    padding-right: 4px;
-    padding-top: 2px;
-    float: right;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
-li:hover .icon{
-    visibility: visible;
+.container {
+    background-color: white;
+    border-radius: 16px; 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
+    width: 90rem;
+    max-width: 400px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1D1D1F;
 }
 
 input {
-    border: none ;
     width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s ease;
 }
-button {
-    border-radius: 5px;
+input:focus {
+    border-color: #e7e7e7;
+    box-shadow: 0px 0px 4px rgba(0, 122, 255, 0.4);
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F9F9F9;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+ul li:hover {
+    background-color: #E0E0E0;
+}
+
+ul li span {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #1D1D1F;
+    margin-right: 10px;
+    word-break: break-word;
+}
+
+ul li .icon {
+    color: #FF3B30; 
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+ul li:hover .icon {
+    opacity: 1;
+}
+
+
+div {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #8E8E93; 
+    margin-top: 15px;
 }
