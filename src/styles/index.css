@@ -16,7 +16,7 @@ body {
 }
 .container {
     
-    background-color: blanchedalmond;
+    background-color: rgb(250, 250, 250);
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
     width: 18.rem;
 }
@@ -32,9 +32,13 @@ ul li {
     flex: wrap;
     width: 10rem;
     background-color: white;
+    border-radius: 5px;
     border: 1px solid;
     list-style: none;
     padding: 5px;
+    margin: 7px;
+    justify-content: center;
+    text-align: center;
 }
 li .icon{
     visibility: hidden;
@@ -51,4 +55,7 @@ li:hover .icon{
 input {
     border: none ;
     width: 100%;
+}
+button {
+    border-radius: 5px;
 }
