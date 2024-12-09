@@ -120,11 +120,11 @@ export const List = () => {
                 {todos.map((todo, index) => (
                     <li key={index}>
                         <span>{todo.label}</span>
-                        <i className="fa fa-x icon" onClick={() => deleteTodo(todo.id)}></i>
+                        <i className="fa-solid fa-xmark icon" onClick={() => deleteTodo(todo.id)}></i>
                     </li>
                 ))}
             </ul>
-            <i className="btn fa fa-trash icon" onClick={() => deleteAllTodos()}></i>
+            <i className="fa-solid fa-trash icon" onClick={() => deleteAllTodos()}></i>
             <div>{todos.length} tasks left</div>
         </div>
     );
